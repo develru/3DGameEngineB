@@ -1,17 +1,20 @@
-project(3DGameEngineB)
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.10)
 
-# add the -c and -Wall flags
-add_definitions(
-        -c
-        -Wall
-)
+project(SandboxGame)
 
-if(CMAKE_BUILD_TYPE STREQUAL "")
-  set(CMAKE_BUILD_TYPE Debug)
-endif()
+file(GLOB CPP_FILES src/*.cpp)
 
-set(CMAKE_CXX_FLAGS "-std=c++0x")
+include_directories(${Engine_INCLUDE_DIRS})
+
+add_executable(${PROJECT_NAME} ${CPP_FILES})
+
+target_link_libraries(${PROJECT_NAME} Engine)
+
+
+#------------
+#project(3DGameEngineB)
+#cmake_minimum_required(VERSION 2.8)
+
 
 # Lets LOAD app our headers!
 #file(GLOB_RECURSE HDRS ${3DGameEngine_SOURCE_DIR}/src/*.h)
@@ -23,12 +26,12 @@ set(CMAKE_CXX_FLAGS "-std=c++0x")
 
 #pkg_search_module(GLFW REQUIRED glfw3)
 #include_directories(${GLFW_INCLUDE_DIRS})
-#
+
 #find_package(OpenGL)
 #include_directories(${OPENGL_INCLUDE_DIR})
 
-aux_source_directory(. SRC_LIST)
-add_executable(${PROJECT_NAME} ${SRC_LIST} ${HDRS} ${SRCS})
+#aux_source_directory(. SRC_LIST)
+#add_executable(${PROJECT_NAME} ${SRC_LIST} ${HDRS} ${SRCS})
 
 #link_libraries(${OPENGL_gl_LIBRARY} ${MATH_LIBRARY})
 #target_link_libraries(${PROJECT_NAME} ${GLFW_STATIC_LIBRARIES} ${OPENGL_LIBRARIES})
